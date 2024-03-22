@@ -91,17 +91,17 @@
           </div>
         </div>
         
-        {% for product in products %}
+        {% for product in trending %}
           <div class="col-lg-3 col-md-6">
             <div class="item">
               <div class="thumb">
-                <a href="product-details.html"><img src="{{ product.image.url }}" alt=""></a>
+                <a href="{% url 'product' product.id %}"><img src="{{ product.image.url }}" alt=""></a>
                 <span class="price"><em>R{{ product.price }}</em>R{{ product.discount_price }}</span>
               </div>
               <div class="down-content">
                 <span class="category">{{ product.Category }}</span>
                 <h4>{{ product.name }}</h4>
-                <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
+                <a href="{% url 'product' product.id %}"><i class="fa fa-shopping-bag"></i></a>
               </div>
             </div>
           </div>
@@ -127,78 +127,20 @@
             <a href="shop.html">View All</a>
           </div>
         </div>
-        <div class="col-lg-2 col-md-6 col-sm-6">
-          <div class="item">
-            <div class="thumb">
-              <a href="product-details.html"><img src="{% static 'images/top-game-01.jpg' %}" alt=""></a>
-            </div>
-            <div class="down-content">
-                <span class="category">Adventure</span>
-                <h4>Assasin Creed</h4>
-                <a href="product-details.html">Explore</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-6 col-sm-6">
-          <div class="item">
-            <div class="thumb">
-              <a href="product-details.html"><img src="{% static 'images/top-game-02.jpg' %}" alt=""></a>
-            </div>
-            <div class="down-content">
-                <span class="category">Adventure</span>
-                <h4>Assasin Creed</h4>
-                <a href="product-details.html">Explore</a>
+        {% for prod in most_played %}
+          <div class="col-lg-2 col-md-6 col-sm-6">
+            <div class="item">
+              <div class="thumb">
+                <a href="{% url 'product' prod.id %}"><img src="{{ prod.image.url }}" alt=""></a>
+              </div>
+              <div class="down-content">
+                  <span class="category">{{ product.category }}</span>
+                  <h4>{{ product.name }}</h4>
+                  <a href="{% url 'product' prod.id %}">Explore</a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-lg-2 col-md-6 col-sm-6">
-          <div class="item">
-            <div class="thumb">
-              <a href="product-details.html"><img src="{% static 'images/top-game-03.jpg' %}" alt=""></a>
-            </div>
-            <div class="down-content">
-                <span class="category">Adventure</span>
-                <h4>Assasin Creed</h4>
-                <a href="product-details.html">Explore</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-6 col-sm-6">
-          <div class="item">
-            <div class="thumb">
-              <a href="product-details.html"><img src="{% static 'images/top-game-04.jpg' %}" alt=""></a>
-            </div>
-            <div class="down-content">
-                <span class="category">Adventure</span>
-                <h4>Assasin Creed</h4>
-                <a href="product-details.html">Explore</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-6 col-sm-6">
-          <div class="item">
-            <div class="thumb">
-              <a href="product-details.html"><img src="{% static 'images/top-game-05.jpg' %}" alt=""></a>
-            </div>
-            <div class="down-content">
-                <span class="category">Adventure</span>
-                <h4>Assasin Creed</h4>
-                <a href="product-details.html">Explore</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-6 col-sm-6">
-          <div class="item">
-            <div class="thumb">
-              <a href="product-details.html"><img src="{% static 'images/top-game-06.jpg' %}" alt=""></a>
-            </div>
-            <div class="down-content">
-                <span class="category">Adventure</span>
-                <h4>Assasin Creed</h4>
-                <a href="product-details.html">Explore</a>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </div>
@@ -212,46 +154,16 @@
             <h2>Top Categories</h2>
           </div>
         </div>
+        {% for category in top_categories %}
         <div class="col-lg col-sm-6 col-xs-12">
           <div class="item">
-            <h4>Action</h4>
+            <h4>{{ category.name }}</h4>
             <div class="thumb">
-              <a href="product-details.html"><img src="{% static 'images/categories-01.jpg' %}" alt=""></a>
+              <a href=""><img src="{% static 'images/categories-01.jpg' %}" alt=""></a>
             </div>
           </div>
         </div>
-        <div class="col-lg col-sm-6 col-xs-12">
-          <div class="item">
-            <h4>Action</h4>
-            <div class="thumb">
-              <a href="product-details.html"><img src="{% static 'images/categories-05.jpg' %}" alt=""></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg col-sm-6 col-xs-12">
-          <div class="item">
-            <h4>Action</h4>
-            <div class="thumb">
-              <a href="product-details.html"><img src="{% static 'images/categories-03.jpg' %}" alt=""></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg col-sm-6 col-xs-12">
-          <div class="item">
-            <h4>Action</h4>
-            <div class="thumb">
-              <a href="product-details.html"><img src="{% static 'images/categories-04.jpg' %}" alt=""></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg col-sm-6 col-xs-12">
-          <div class="item">
-            <h4>Action</h4>
-            <div class="thumb">
-              <a href="product-details.html"><img src="{% static 'images/categories-05.jpg' %}" alt=""></a>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </div>

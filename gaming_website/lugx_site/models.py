@@ -3,6 +3,7 @@ import datetime
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
+    total_searched = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -25,6 +26,7 @@ class Product(models.Model):
     description = models.CharField(max_length=500, default="", blank=True, null=True)
     image = models.ImageField(upload_to='uploads/product/')
     is_featured = models.BooleanField(default=False)
+    total_plays = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
