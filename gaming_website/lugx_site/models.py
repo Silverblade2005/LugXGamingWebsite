@@ -7,6 +7,13 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Tags(models.Model):
+    name = models.CharField(max_length=50)
+    total_searched = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name
 
 class Customer(models.Model):
     first_name = models.CharField(max_length=50)
@@ -27,9 +34,11 @@ class Product(models.Model):
     image = models.ImageField(upload_to='uploads/product/')
     is_featured = models.BooleanField(default=False)
     total_plays = models.IntegerField(default=0)
+    tags = models.ManyToManyField(Tags)
 
     def __str__(self):
         return self.name
+    
 class Order(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
