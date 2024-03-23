@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col-lg-12">
           <h3>{{ product.name }}</h3>
-          <span class="breadcrumb"><a href="{% url 'home'%}">Home</a>  >  <a href="{% url 'shop'%}">Shop</a>  >  {{ product.name }}</span>
+          <span class="breadcrumb"><a href="{% url 'home'%}">Home</a>  >  <a href="{% url 'shop' default_page_num %}">Shop</a>  >  {{ product.name }}</span>
         </div>
       </div>
     </div>
@@ -33,7 +33,13 @@
           <ul>
             <li><span>Game ID:</span> {{ product.name }}</li>
             <li><span>Genre:</span> <a href="#">{{ product.Category }}</a>
-            <li><span>Multi-tags:</span> <a href="#">War</a>, <a href="#">Battle</a>, <a href="#">Royal</a></li>
+            <li><span>Multi-tags:</span>{% for tag in product.tags.all %}
+               <a href="#">
+                {% if forloop.last %}
+                  {{ tag.name }}
+                {% else %}
+                  {{ tag.name }},
+                {% endif %}</a>{% endfor %}</li>
           </ul>
         </div>
         <div class="col-lg-12">
@@ -88,46 +94,16 @@
             <a href="shop.html">View All</a>
           </div>
         </div>
+        {% for category in categories %}
         <div class="col-lg col-sm-6 col-xs-12">
           <div class="item">
-            <h4>Action</h4>
+            <h4>{{ category.name }}</h4>
             <div class="thumb">
               <a href="product-details.html"><img src="assets/images/categories-01.jpg" alt=""></a>
             </div>
           </div>
         </div>
-        <div class="col-lg col-sm-6 col-xs-12">
-          <div class="item">
-            <h4>Action</h4>
-            <div class="thumb">
-              <a href="product-details.html"><img src="assets/images/categories-05.jpg" alt=""></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg col-sm-6 col-xs-12">
-          <div class="item">
-            <h4>Action</h4>
-            <div class="thumb">
-              <a href="product-details.html"><img src="assets/images/categories-03.jpg" alt=""></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg col-sm-6 col-xs-12">
-          <div class="item">
-            <h4>Action</h4>
-            <div class="thumb">
-              <a href="product-details.html"><img src="assets/images/categories-04.jpg" alt=""></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg col-sm-6 col-xs-12">
-          <div class="item">
-            <h4>Action</h4>
-            <div class="thumb">
-              <a href="product-details.html"><img src="assets/images/categories-05.jpg" alt=""></a>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </div>
